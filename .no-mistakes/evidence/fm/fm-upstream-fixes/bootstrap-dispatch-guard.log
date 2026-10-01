@@ -1,0 +1,5 @@
+== harness=devin ==
+BOOTSTRAP_INFO: crew dispatch active config/crew-dispatch.json
+BOOTSTRAP_INFO: crew dispatch default: devin
+== harness=notaharness ==
+CREW_DISPATCH: invalid config/crew-dispatch.json - unverified harness: notaharness

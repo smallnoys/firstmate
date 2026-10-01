@@ -1,0 +1,7 @@
+# crew-dispatch.json: {"rules":[{"when":"research","use":{"harness":"gemini"}}],"default":{"harness":"claude"}}
+== target 7d8c708 bin/fm-bootstrap.sh ==
+BOOTSTRAP_INFO: crew dispatch active config/crew-dispatch.json
+BOOTSTRAP_INFO: crew dispatch rule: research -> gemini
+BOOTSTRAP_INFO: crew dispatch default: claude
+== base eb77f02 bin/fm-bootstrap.sh ==
+CREW_DISPATCH: invalid config/crew-dispatch.json - unverified harness: gemini
