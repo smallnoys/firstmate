@@ -1,0 +1,14 @@
+fm-imm    rc=0 elapsed=0.77s list-workspaces_calls=0 out=aaaaaaaa-0000-0000-0000-000000000001 dddddddd-0000-0000-0000-000000000001
+fm-late   rc=0 elapsed=1.97s list-workspaces_calls=0 out=bbbbbbbb-0000-0000-0000-000000000001 cccccccc-0000-0000-0000-000000000001
+fm-never  rc=1 elapsed=4.34s list-workspaces_calls=0 out=error: could not resolve a cmux workspace id for 'fm-firstmate-0604bc3c-never' after creation
+
+Driver: real bin/backends/cmux.sh fm_backend_cmux_create_task, PATH-guarded fake cmux (scripted list responses).
+imm   = workspace listed on the first post-create lookup (no retry sleep).
+late  = 4 empty post-create lists, then listed -> resolves after ~4 x 0.3s.
+never = workspace never listed -> gives up after 10 tries (~3s) with exit 1 and the documented error.
+
+Incident note: an earlier attempt of this driver failed to load the fake, so these three
+create_task calls reached the operator's real cmux 0.65.0 app and each returned
+"<workspace_uuid> <surface_uuid>" (rc=0, ~0.6s). The three workspaces
+(fm-firstmate-0604bc3c-imm/-late/-never) were closed with `cmux close-workspace`
+right away, and a follow-up `list-workspaces` showed none remaining.
